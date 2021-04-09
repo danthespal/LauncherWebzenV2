@@ -9,14 +9,14 @@ using System.Windows.Forms;
 
 namespace LauncherWebzenV2
 {
-  internal static class Program
-  {
-    [STAThread]
-    private static void Main()
+    internal static class Program
     {
-      Application.EnableVisualStyles();
-      Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run((Form) new LauncherWebzenV2.Main());
+        [STAThread]
+        private static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run((Form) new LauncherWebzenV2.Main());
+        }
     }
-  }
 }

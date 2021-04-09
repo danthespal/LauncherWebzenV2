@@ -13,125 +13,126 @@ using System.Windows.Forms;
 
 namespace LauncherWebzenV2
 {
-  public class Main : Form
-  {
-    private IContainer components;
-    public Label Status;
-    public Button Btn_Run;
-    public Button Btn_Quit;
-    public Button Btn_Options;
-    public Label completeProgressText;
-    public Label currentProgressText;
-    public PictureBox completeBar;
-    public PictureBox currentBar;
-    public Panel UpdatePanel;
+    public class Main : Form
+    {
+        private IContainer components;
+        public Label Status;
+        public Button Btn_Run;
+        public Button Btn_Quit;
+        public Button Btn_Options;
+        public Label completeProgressText;
+        public Label currentProgressText;
+        public PictureBox completeBar;
+        public PictureBox currentBar;
+        public Panel UpdatePanel;
         private WebBrowser webPanel;
         private Label WindowName_txt;
 
-    [DllImport("kernel32.dll", SetLastError = true)]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool AllocConsole();
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool AllocConsole();
 
-    public Main()
-    {
-      this.InitializeComponent();
-      Import.gMain = this;
-      Protect.ReadInfo();
-    }
-
-    private void Main_Load(object sender, EventArgs e)
-    {
-      this.Text = Import.windowName;
-      this.WindowName_txt.Text = Import.windowName;
-      RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Webzen\\Mu\\Config");
-      if (registryKey != null)
-      {
-        if (registryKey.GetValue("LangSelection") != null)
+        public Main()
         {
-          string strA = registryKey.GetValue("LangSelection").ToString();
-          Import.LauncherLanguage = string.Compare(strA, "Eng") != 0 ? (string.Compare(strA, "Spn") != 0 ? 2 : 1) : 0;
+            this.InitializeComponent();
+            Import.gMain = this;
+            Protect.ReadInfo();
         }
-        registryKey.Close();
-      }
-      if (Import.webPanelURL != "")
-      {
-        this.webPanel.Visible = true;
-        this.webPanel.Navigate(Import.webPanelURL);
-      }
-      this.Status.Text = Texts.ReloadString();
-    }
 
-    private void Btn_Quit_Click(object sender, EventArgs e) => this.Dispose();
+        private void Main_Load(object sender, EventArgs e)
+        {
+            this.Text = Import.windowName;
+            this.WindowName_txt.Text = Import.windowName;
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Webzen\\Mu\\Config");
+            
+            if (registryKey != null)
+            {
+                if (registryKey.GetValue("LangSelection") != null)
+                {
+                    string strA = registryKey.GetValue("LangSelection").ToString();
+                    Import.LauncherLanguage = string.Compare(strA, "Eng") != 0 ? (string.Compare(strA, "Spn") != 0 ? 2 : 1) : 0;
+                }
+                registryKey.Close();
+            }
+            if (Import.webPanelURL != "")
+            {
+                this.webPanel.Visible = true;
+                this.webPanel.Navigate(Import.webPanelURL);
+            }
+            this.Status.Text = Texts.ReloadString();
+        }
 
-    private void Btn_Quit_MouseHover(object sender, EventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_h;
+        private void Btn_Quit_Click(object sender, EventArgs e) => this.Dispose();
 
-    private void Btn_Quit_MouseLeave(object sender, EventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_n;
+        private void Btn_Quit_MouseHover(object sender, EventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_h;
 
-    private void Btn_Quit_MouseDown(object sender, MouseEventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_c;
+        private void Btn_Quit_MouseLeave(object sender, EventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_n;
 
-    private void Btn_Quit_MouseUp(object sender, MouseEventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_h;
+        private void Btn_Quit_MouseDown(object sender, MouseEventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_c;
 
-    private void Btn_Options_Click(object sender, EventArgs e)
-    {
-      this.Opacity = 0.5;
-      Options options = new Options();
-      int num = (int) options.ShowDialog();
-      options.Dispose();
-      this.Opacity = 1.0;
-    }
+        private void Btn_Quit_MouseUp(object sender, MouseEventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_h;
 
-    private void Btn_Options_MouseHover(object sender, EventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_h;
+        private void Btn_Options_Click(object sender, EventArgs e)
+        {
+            this.Opacity = 0.5;
+            Options options = new Options();
+            int num = (int) options.ShowDialog();
+            options.Dispose();
+            this.Opacity = 1.0;
+        }
 
-    private void Btn_Options_MouseLeave(object sender, EventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_n;
+        private void Btn_Options_MouseHover(object sender, EventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_h;
 
-    private void Btn_Options_MouseDown(object sender, MouseEventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_c;
+        private void Btn_Options_MouseLeave(object sender, EventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_n;
 
-    private void Btn_Options_MouseUp(object sender, MouseEventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_h;
+        private void Btn_Options_MouseDown(object sender, MouseEventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_c;
 
-    private void Btn_Run_Click(object sender, EventArgs e)
-    {
-      if (!this.Btn_Run.Enabled)
-        return;
-      ListDownloader.DownloadList();
-    }
+        private void Btn_Options_MouseUp(object sender, MouseEventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_h;
 
-    private void Btn_Run_MouseHover(object sender, EventArgs e)
-    {
-      if (!this.Btn_Run.Enabled)
-        return;
-      this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_h;
-    }
+        private void Btn_Run_Click(object sender, EventArgs e)
+        {
+            if (!this.Btn_Run.Enabled)
+                return;
+            ListDownloader.DownloadList();
+        }
 
-    private void Btn_Run_MouseLeave(object sender, EventArgs e)
-    {
-      if (!this.Btn_Run.Enabled)
-        return;
-      this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_n;
-    }
+        private void Btn_Run_MouseHover(object sender, EventArgs e)
+        {
+            if (!this.Btn_Run.Enabled)
+                return;
+            this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_h;
+        }
 
-    private void Btn_Run_MouseDown(object sender, MouseEventArgs e)
-    {
-      if (!this.Btn_Run.Enabled)
-        return;
-      this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_c;
-    }
+        private void Btn_Run_MouseLeave(object sender, EventArgs e)
+        {
+            if (!this.Btn_Run.Enabled)
+                return;
+            this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_n;
+        }
 
-    private void Btn_Run_MouseUp(object sender, MouseEventArgs e)
-    {
-      if (!this.Btn_Run.Enabled)
-        return;
-      this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_h;
-    }
+        private void Btn_Run_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!this.Btn_Run.Enabled)
+                return;
+            this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_c;
+        }
 
-    protected override void Dispose(bool disposing)
-    {
-      if (disposing && this.components != null)
-        this.components.Dispose();
-      base.Dispose(disposing);
-    }
+        private void Btn_Run_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!this.Btn_Run.Enabled)
+                return;
+            this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_h;
+        }
 
-    private void InitializeComponent()
-    {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && this.components != null)
+                this.components.Dispose();
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
             this.Status = new System.Windows.Forms.Label();
             this.Btn_Run = new System.Windows.Forms.Button();
             this.Btn_Quit = new System.Windows.Forms.Button();
@@ -332,7 +333,6 @@ namespace LauncherWebzenV2
             this.UpdatePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
+        }
     }
-  }
 }
