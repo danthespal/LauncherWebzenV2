@@ -1,1 +1,3 @@
 # LauncherWebzenV2
+
+[![deepcode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6ImRhbnRoZXNwYWwiLCJyZXBvMSI6IkxhdW5jaGVyV2ViemVuVjIiLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoxNTg3MSwiaWF0IjoxNjE3OTk5NDA3fQ.z4Dbs99WxS_6T8s71rwBGwNGCkA-leNrjn2yoJOzc1U)](https://www.deepcode.ai/app/gh/danthespal/LauncherWebzenV2/_/dashboard?utm_content=gh%2Fdanthespal%2FLauncherWebzenV2)
