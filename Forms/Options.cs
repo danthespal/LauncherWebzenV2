@@ -195,6 +195,7 @@ namespace LauncherWebzenV2.Forms
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
             this.panel2 = new System.Windows.Forms.Panel();
             this.color1 = new System.Windows.Forms.RadioButton();
             this.color2 = new System.Windows.Forms.RadioButton();
@@ -514,6 +515,7 @@ namespace LauncherWebzenV2.Forms
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Options";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Options";

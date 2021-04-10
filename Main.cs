@@ -140,6 +140,7 @@ namespace LauncherWebzenV2
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.Status = new System.Windows.Forms.Label();
             this.Btn_Run = new System.Windows.Forms.Button();
             this.Btn_Quit = new System.Windows.Forms.Button();
@@ -326,6 +327,7 @@ namespace LauncherWebzenV2
             this.Controls.Add(this.Btn_Quit);
             this.Controls.Add(this.Btn_Run);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(990, 560);
             this.MinimumSize = new System.Drawing.Size(990, 560);
@@ -341,6 +343,7 @@ namespace LauncherWebzenV2
             this.UpdatePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private void Main_MouseDown(object sender, MouseEventArgs e)
