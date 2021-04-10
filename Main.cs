@@ -341,7 +341,6 @@ namespace LauncherWebzenV2
             this.UpdatePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private void Main_MouseDown(object sender, MouseEventArgs e)
