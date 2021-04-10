@@ -27,6 +27,13 @@ namespace LauncherWebzenV2
         public Panel UpdatePanel;
         private WebBrowser webPanel;
         private Label WindowName_txt;
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
 
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -327,12 +334,23 @@ namespace LauncherWebzenV2
             this.Text = "Launcher - decrypted by Arsenic";
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(15)))), ((int)(((byte)(12)))));
             this.Load += new System.EventHandler(this.Main_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.completeBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.currentBar)).EndInit();
             this.UpdatePanel.ResumeLayout(false);
             this.UpdatePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
+        }
+
+        private void Main_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
     }
 }
