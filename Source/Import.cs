@@ -15,7 +15,7 @@ namespace LauncherWebzenV2.Source
         public static string MutexName = "";
         public static Mutex Mutex = (Mutex) null;
         public static string webPanelURL = "";
-        public static string windowName = "Mu Launcher - kayito";
+        public static string windowName = "Mu Launcher - KG-Emulator";
         public static int LauncherLanguage = 0;
         public static Main gMain;
         public static List<Import.File> Files = new List<Import.File>();

@@ -333,7 +333,7 @@ namespace LauncherWebzenV2
             this.MinimumSize = new System.Drawing.Size(990, 560);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Launcher - decrypted by Arsenic";
+            this.Text = "Launcher";
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(15)))), ((int)(((byte)(12)))));
             this.Load += new System.EventHandler(this.Main_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_MouseDown);
