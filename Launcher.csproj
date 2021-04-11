@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EBF6198F-1B37-452A-AD48-90FA566D8F98}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AssemblyName>LauncherWebzenV2</AssemblyName>
+    <AssemblyName>Launcher</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <ApplicationVersion>1.0.0.0</ApplicationVersion>
     <FileAlignment>512</FileAlignment>
