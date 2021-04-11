@@ -96,11 +96,18 @@ namespace LauncherWebzenV2
 
         private void Btn_Options_MouseUp(object sender, MouseEventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_h;
 
+        /*
         private void Btn_Run_Click(object sender, EventArgs e)
         {
             if (!this.Btn_Run.Enabled)
                 return;
             ListDownloader.DownloadList();
+        }
+        */
+
+        private void Btn_Run_Click(object sender, EventArgs e)
+        {
+            Starter.Start();
         }
 
         private void Btn_Run_MouseHover(object sender, EventArgs e)
