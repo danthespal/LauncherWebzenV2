@@ -8,7 +8,7 @@ namespace LauncherWebzenV2.Source
 {
     internal class Import
     {
-        public static string LauncherInfo = ".\\LauncherInfo.bmd";
+        public static string LauncherInfo = ".\\Data\\Launcher\\Settings\\LauncherInfo.bmd";
         public static string ServerURL = "";
         public static string PatchlistName = "";
         public static string ExecutableName = "Main.exe";
