@@ -90,7 +90,6 @@ namespace GetLauncherInfo
             this.textBoxServerURL.Size = new System.Drawing.Size(176, 23);
             this.textBoxServerURL.TabIndex = 4;
             this.textBoxServerURL.Text = "http://YOUR_WEBSITE/launcher/update/";
-            this.textBoxServerURL.TextChanged += new System.EventHandler(this.textBoxServerURL_TextChanged);
             // 
             // ServerURL
             // 
