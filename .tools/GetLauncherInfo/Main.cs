@@ -2,11 +2,14 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace GetLauncherInfo
 {
     public partial class Main : Form
     {
+        public static string LauncherInfo = ".\\Data\\Launcher\\Settings\\LauncherInfo.bmd";
+
         public Main()
         {
             InitializeComponent();
@@ -29,6 +32,23 @@ namespace GetLauncherInfo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] strArray = System.IO.File.Exists(LauncherInfo) ? Regex.Split(SecureStringManager.Decrypt(System.IO.File.ReadAllText(LauncherInfo), "WhyAreYouReadingThis"), "\r\n") : throw new Exception();
+                textBoxServerURL.Text = strArray[0];
+                textBoxPatchlist.Text = strArray[1];
+                textBoxExe.Text = strArray[2];
+                textBoxMutex.Text = strArray[3];
+                textBoxWebPageURL.Text = strArray[4];
+                textBoxLauncher.Text = strArray[5];
+            }
+            catch
+            {
             }
         }
     }
