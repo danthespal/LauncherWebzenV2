@@ -50,9 +50,10 @@ namespace GetLauncherInfo
             // LauncherWindowName
             // 
             this.LauncherWindowName.AutoSize = true;
+            this.LauncherWindowName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LauncherWindowName.Location = new System.Drawing.Point(12, 20);
             this.LauncherWindowName.Name = "LauncherWindowName";
-            this.LauncherWindowName.Size = new System.Drawing.Size(42, 15);
+            this.LauncherWindowName.Size = new System.Drawing.Size(43, 15);
             this.LauncherWindowName.TabIndex = 0;
             this.LauncherWindowName.Text = "Name:";
             this.toolTip.SetToolTip(this.LauncherWindowName, "Launcher Window Name");
@@ -60,16 +61,21 @@ namespace GetLauncherInfo
             // ExecutableName
             // 
             this.ExecutableName.AutoSize = true;
+            this.ExecutableName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ExecutableName.Location = new System.Drawing.Point(12, 49);
             this.ExecutableName.Name = "ExecutableName";
-            this.ExecutableName.Size = new System.Drawing.Size(63, 15);
+            this.ExecutableName.Size = new System.Drawing.Size(66, 15);
             this.ExecutableName.TabIndex = 1;
             this.ExecutableName.Text = "Exe Name:";
             this.toolTip.SetToolTip(this.ExecutableName, "Name of your executable. Exmaples: \"Main.exe\", \"Play.exe\", \"Game.exe\", etc.");
             // 
             // textBoxLauncher
             // 
+            this.textBoxLauncher.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxLauncher.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxLauncher.Location = new System.Drawing.Point(108, 17);
+            this.textBoxLauncher.MaximumSize = new System.Drawing.Size(176, 23);
+            this.textBoxLauncher.MinimumSize = new System.Drawing.Size(176, 23);
             this.textBoxLauncher.Name = "textBoxLauncher";
             this.textBoxLauncher.Size = new System.Drawing.Size(176, 23);
             this.textBoxLauncher.TabIndex = 2;
@@ -77,15 +83,21 @@ namespace GetLauncherInfo
             // 
             // textBoxExe
             // 
+            this.textBoxExe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxExe.Location = new System.Drawing.Point(108, 46);
+            this.textBoxExe.MaximumSize = new System.Drawing.Size(176, 23);
+            this.textBoxExe.MinimumSize = new System.Drawing.Size(176, 23);
             this.textBoxExe.Name = "textBoxExe";
             this.textBoxExe.Size = new System.Drawing.Size(176, 23);
             this.textBoxExe.TabIndex = 3;
-            this.textBoxExe.Text = "main.exe";
+            this.textBoxExe.Text = "Main.exe";
             // 
             // textBoxServerURL
             // 
+            this.textBoxServerURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxServerURL.Location = new System.Drawing.Point(108, 133);
+            this.textBoxServerURL.MaximumSize = new System.Drawing.Size(176, 23);
+            this.textBoxServerURL.MinimumSize = new System.Drawing.Size(176, 23);
             this.textBoxServerURL.Name = "textBoxServerURL";
             this.textBoxServerURL.Size = new System.Drawing.Size(176, 23);
             this.textBoxServerURL.TabIndex = 4;
@@ -94,16 +106,20 @@ namespace GetLauncherInfo
             // ServerURL
             // 
             this.ServerURL.AutoSize = true;
+            this.ServerURL.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ServerURL.Location = new System.Drawing.Point(12, 136);
             this.ServerURL.Name = "ServerURL";
-            this.ServerURL.Size = new System.Drawing.Size(63, 15);
+            this.ServerURL.Size = new System.Drawing.Size(71, 15);
             this.ServerURL.TabIndex = 5;
             this.ServerURL.Text = "ServerURL:";
             this.toolTip.SetToolTip(this.ServerURL, "URL for the updates. Example: \"http://YOUR_WEBSITE/launcher/updates/\"");
             // 
             // textBoxWebPageURL
             // 
+            this.textBoxWebPageURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxWebPageURL.Location = new System.Drawing.Point(108, 162);
+            this.textBoxWebPageURL.MaximumSize = new System.Drawing.Size(176, 23);
+            this.textBoxWebPageURL.MinimumSize = new System.Drawing.Size(176, 23);
             this.textBoxWebPageURL.Name = "textBoxWebPageURL";
             this.textBoxWebPageURL.Size = new System.Drawing.Size(176, 23);
             this.textBoxWebPageURL.TabIndex = 6;
@@ -112,15 +128,17 @@ namespace GetLauncherInfo
             // WebPanelURL
             // 
             this.WebPanelURL.AutoSize = true;
+            this.WebPanelURL.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.WebPanelURL.Location = new System.Drawing.Point(12, 165);
             this.WebPanelURL.Name = "WebPanelURL";
-            this.WebPanelURL.Size = new System.Drawing.Size(81, 15);
+            this.WebPanelURL.Size = new System.Drawing.Size(86, 15);
             this.WebPanelURL.TabIndex = 7;
             this.WebPanelURL.Text = "WebPageURL:";
             this.toolTip.SetToolTip(this.WebPanelURL, "URL for the Web Panel. Example: \"http://YOUR_WEBSITE/launcher/\"");
             // 
             // buttonSave
             // 
+            this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.buttonSave.Location = new System.Drawing.Point(123, 206);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
@@ -131,7 +149,10 @@ namespace GetLauncherInfo
             // 
             // textBoxMutex
             // 
+            this.textBoxMutex.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxMutex.Location = new System.Drawing.Point(108, 75);
+            this.textBoxMutex.MaximumSize = new System.Drawing.Size(176, 23);
+            this.textBoxMutex.MinimumSize = new System.Drawing.Size(176, 23);
             this.textBoxMutex.Name = "textBoxMutex";
             this.textBoxMutex.Size = new System.Drawing.Size(176, 23);
             this.textBoxMutex.TabIndex = 9;
@@ -140,9 +161,10 @@ namespace GetLauncherInfo
             // MutexName
             // 
             this.MutexName.AutoSize = true;
+            this.MutexName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.MutexName.Location = new System.Drawing.Point(12, 78);
             this.MutexName.Name = "MutexName";
-            this.MutexName.Size = new System.Drawing.Size(79, 15);
+            this.MutexName.Size = new System.Drawing.Size(83, 15);
             this.MutexName.TabIndex = 10;
             this.MutexName.Text = "Mutex Name:";
             this.toolTip.SetToolTip(this.MutexName, "Name of the Launcher to block executing main. (You have to put the same name in M" +
@@ -150,7 +172,10 @@ namespace GetLauncherInfo
             // 
             // textBoxPatchlist
             // 
+            this.textBoxPatchlist.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxPatchlist.Location = new System.Drawing.Point(108, 104);
+            this.textBoxPatchlist.MaximumSize = new System.Drawing.Size(176, 23);
+            this.textBoxPatchlist.MinimumSize = new System.Drawing.Size(176, 23);
             this.textBoxPatchlist.Name = "textBoxPatchlist";
             this.textBoxPatchlist.Size = new System.Drawing.Size(176, 23);
             this.textBoxPatchlist.TabIndex = 11;
@@ -159,9 +184,10 @@ namespace GetLauncherInfo
             // PatchlistName
             // 
             this.PatchlistName.AutoSize = true;
+            this.PatchlistName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.PatchlistName.Location = new System.Drawing.Point(12, 108);
             this.PatchlistName.Name = "PatchlistName";
-            this.PatchlistName.Size = new System.Drawing.Size(90, 15);
+            this.PatchlistName.Size = new System.Drawing.Size(93, 15);
             this.PatchlistName.TabIndex = 12;
             this.PatchlistName.Text = "Patchlist Name:";
             this.toolTip.SetToolTip(this.PatchlistName, "Name of the update file. Example: \"update.txt\"");
