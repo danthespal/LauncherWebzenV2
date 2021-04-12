@@ -72,7 +72,7 @@ namespace GetLauncherInfo
             // textBoxLauncher
             // 
             this.textBoxLauncher.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxLauncher.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxLauncher.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxLauncher.Location = new System.Drawing.Point(108, 17);
             this.textBoxLauncher.MaximumSize = new System.Drawing.Size(176, 23);
             this.textBoxLauncher.MinimumSize = new System.Drawing.Size(176, 23);
@@ -83,7 +83,7 @@ namespace GetLauncherInfo
             // 
             // textBoxExe
             // 
-            this.textBoxExe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxExe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxExe.Location = new System.Drawing.Point(108, 46);
             this.textBoxExe.MaximumSize = new System.Drawing.Size(176, 23);
             this.textBoxExe.MinimumSize = new System.Drawing.Size(176, 23);
@@ -94,7 +94,7 @@ namespace GetLauncherInfo
             // 
             // textBoxServerURL
             // 
-            this.textBoxServerURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxServerURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxServerURL.Location = new System.Drawing.Point(108, 133);
             this.textBoxServerURL.MaximumSize = new System.Drawing.Size(176, 23);
             this.textBoxServerURL.MinimumSize = new System.Drawing.Size(176, 23);
@@ -116,7 +116,7 @@ namespace GetLauncherInfo
             // 
             // textBoxWebPageURL
             // 
-            this.textBoxWebPageURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxWebPageURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxWebPageURL.Location = new System.Drawing.Point(108, 162);
             this.textBoxWebPageURL.MaximumSize = new System.Drawing.Size(176, 23);
             this.textBoxWebPageURL.MinimumSize = new System.Drawing.Size(176, 23);
@@ -149,7 +149,7 @@ namespace GetLauncherInfo
             // 
             // textBoxMutex
             // 
-            this.textBoxMutex.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxMutex.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxMutex.Location = new System.Drawing.Point(108, 75);
             this.textBoxMutex.MaximumSize = new System.Drawing.Size(176, 23);
             this.textBoxMutex.MinimumSize = new System.Drawing.Size(176, 23);
@@ -172,7 +172,7 @@ namespace GetLauncherInfo
             // 
             // textBoxPatchlist
             // 
-            this.textBoxPatchlist.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxPatchlist.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxPatchlist.Location = new System.Drawing.Point(108, 104);
             this.textBoxPatchlist.MaximumSize = new System.Drawing.Size(176, 23);
             this.textBoxPatchlist.MinimumSize = new System.Drawing.Size(176, 23);
@@ -220,6 +220,8 @@ namespace GetLauncherInfo
             this.Controls.Add(this.ExecutableName);
             this.Controls.Add(this.LauncherWindowName);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(321, 280);
+            this.MinimumSize = new System.Drawing.Size(321, 280);
             this.Name = "Main";
             this.Text = "GetLauncherInfo";
             this.Load += new System.EventHandler(this.Main_Load);
