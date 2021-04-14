@@ -1,8 +1,5 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: LauncherWebzenV2.Program
-// Assembly: LauncherWebzenV2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FE99EB13-A342-49B7-BE94-B9FF93247050
-// Assembly location: D:\Git\MuOnlineLauncher\Webzen\LauncherWebzenV2\Cliente\LauncherWebzenV2.exe
+﻿// Program.cs
+// decrypted by Arsenic for KG-Emulator
 
 using System;
 using System.Windows.Forms;
@@ -16,7 +13,7 @@ namespace LauncherWebzenV2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run((Form) new LauncherWebzenV2.Main());
+            Application.Run(new Main());
         }
     }
 }
