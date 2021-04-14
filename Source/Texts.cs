@@ -9,7 +9,7 @@ namespace LauncherWebzenV2.Source
     {
         private static string lastMessage;
         private static object[] lastParams;
-        private static Dictionary<string, string> Text_Eng = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> Text_Eng = new Dictionary<string, string>()
         {
             {
                 "UNKNOWNERROR",
@@ -76,7 +76,7 @@ namespace LauncherWebzenV2.Source
                 "Download complete, good game."
             }
         };
-        private static Dictionary<string, string> Text_Spn = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> Text_Spn = new Dictionary<string, string>()
         {
             {
                 "UNKNOWNERROR",
@@ -143,7 +143,7 @@ namespace LauncherWebzenV2.Source
                 "Descarga completa, disfruta el juego."
             }
         };
-        private static Dictionary<string, string> Text_Por = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> Text_Por = new Dictionary<string, string>()
         {
             {
                 "UNKNOWNERROR",
@@ -213,47 +213,59 @@ namespace LauncherWebzenV2.Source
 
         public static string GetText(string Key, params object[] Arguments)
         {
-            Texts.lastMessage = Key;
-            Texts.lastParams = Arguments;
+            lastMessage = Key;
+            lastParams = Arguments;
             switch (Import.LauncherLanguage)
             {
                 case 0:
-                    using (Dictionary<string, string>.Enumerator enumerator = Texts.Text_Eng.GetEnumerator())
+                    using (Dictionary<string, string>.Enumerator enumerator = Text_Eng.GetEnumerator())
                     {
                         while (enumerator.MoveNext())
                         {
                             KeyValuePair<string, string> current = enumerator.Current;
                             if (current.Key == Key)
+                            {
                                 return string.Format(current.Value, Arguments);
+                            }
                         }
                         break;
                     }
                 case 1:
-                    using (Dictionary<string, string>.Enumerator enumerator = Texts.Text_Spn.GetEnumerator())
+                    using (Dictionary<string, string>.Enumerator enumerator = Text_Spn.GetEnumerator())
                     {
                         while (enumerator.MoveNext())
                         {
                             KeyValuePair<string, string> current = enumerator.Current;
                             if (current.Key == Key)
+                            {
                                 return string.Format(current.Value, Arguments);
+                            }
                         }
                         break;
                     }
                 case 2:
-                    using (Dictionary<string, string>.Enumerator enumerator = Texts.Text_Por.GetEnumerator())
+                    using (Dictionary<string, string>.Enumerator enumerator = Text_Por.GetEnumerator())
                     {
                         while (enumerator.MoveNext())
                         {
                             KeyValuePair<string, string> current = enumerator.Current;
                             if (current.Key == Key)
+                            {
                                 return string.Format(current.Value, Arguments);
+                            }
                         }
                         break;
                     }
+
+                default:
+                    break;
             }
             return (string) null;
         }
 
-        public static string ReloadString() => Texts.GetText(Texts.lastMessage, Texts.lastParams);
+        public static string ReloadString()
+        {
+            return GetText(lastMessage, lastParams);
+        }
     }
 }
