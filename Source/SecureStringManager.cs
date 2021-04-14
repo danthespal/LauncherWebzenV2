@@ -17,12 +17,14 @@ namespace LauncherWebzenV2.Source
         {
             byte[] bytes1 = Encoding.UTF8.GetBytes("xTRm49Tj67WxbyVf");
             byte[] bytes2 = Encoding.UTF8.GetBytes(plainText);
-            byte[] bytes3 = new PasswordDeriveBytes(passPhrase, (byte[]) null).GetBytes(32);
-            RijndaelManaged rijndaelManaged = new RijndaelManaged();
-            rijndaelManaged.Mode = CipherMode.CBC;
+            byte[] bytes3 = new PasswordDeriveBytes(passPhrase, null).GetBytes(32);
+            RijndaelManaged rijndaelManaged = new RijndaelManaged
+            {
+                Mode = CipherMode.CBC
+            };
             ICryptoTransform encryptor = rijndaelManaged.CreateEncryptor(bytes3, bytes1);
             MemoryStream memoryStream = new MemoryStream();
-            CryptoStream cryptoStream = new CryptoStream((Stream) memoryStream, encryptor, CryptoStreamMode.Write);
+            CryptoStream cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write);
             cryptoStream.Write(bytes2, 0, bytes2.Length);
             cryptoStream.FlushFinalBlock();
             byte[] array = memoryStream.ToArray();
@@ -35,12 +37,14 @@ namespace LauncherWebzenV2.Source
         {
             byte[] bytes1 = Encoding.ASCII.GetBytes("xTRm49Tj67WxbyVf");
             byte[] buffer = Convert.FromBase64String(cipherText);
-            byte[] bytes2 = new PasswordDeriveBytes(passPhrase, (byte[]) null).GetBytes(32);
-            RijndaelManaged rijndaelManaged = new RijndaelManaged();
-            rijndaelManaged.Mode = CipherMode.CBC;
+            byte[] bytes2 = new PasswordDeriveBytes(passPhrase, null).GetBytes(32);
+            RijndaelManaged rijndaelManaged = new RijndaelManaged
+            {
+                Mode = CipherMode.CBC
+            };
             ICryptoTransform decryptor = rijndaelManaged.CreateDecryptor(bytes2, bytes1);
             MemoryStream memoryStream = new MemoryStream(buffer);
-            CryptoStream cryptoStream = new CryptoStream((Stream) memoryStream, decryptor, CryptoStreamMode.Read);
+            CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
             byte[] numArray = new byte[buffer.Length];
             int count = cryptoStream.Read(numArray, 0, numArray.Length);
             memoryStream.Close();
