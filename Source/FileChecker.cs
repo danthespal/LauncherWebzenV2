@@ -9,44 +9,46 @@ namespace LauncherWebzenV2.Source
 {
     internal class FileChecker
     {
-        private static BackgroundWorker backgroundWorker = new BackgroundWorker();
+        private static readonly BackgroundWorker backgroundWorker = new BackgroundWorker();
 
         public static void CheckFiles()
         {
-            FileChecker.backgroundWorker.WorkerReportsProgress = true;
-            FileChecker.backgroundWorker.DoWork += new DoWorkEventHandler(FileChecker.backgroundWorker_DoWork);
-            FileChecker.backgroundWorker.ProgressChanged += new ProgressChangedEventHandler(FileChecker.backgroundWorker_ProgressChanged);
-            FileChecker.backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(FileChecker.backgroundWorker_RunWorkerCompleted);
+            backgroundWorker.WorkerReportsProgress = true;
+            backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
+            backgroundWorker.ProgressChanged += new ProgressChangedEventHandler(BackgroundWorker_ProgressChanged);
+            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker_RunWorkerCompleted);
             
-            if (FileChecker.backgroundWorker.IsBusy)
+            if (backgroundWorker.IsBusy)
             {
-                int num = (int) MessageBox.Show(Texts.GetText("UNKNOWNERROR", (object) "CheckFiles isBusy"));
+                int num = (int)MessageBox.Show(Texts.GetText("UNKNOWNERROR", (object)"CheckFiles isBusy"));
                 Application.Exit();
             }
             else
-                FileChecker.backgroundWorker.RunWorkerAsync();
+            {
+                backgroundWorker.RunWorkerAsync();
+            }
         }
 
-        private static void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        private static void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             foreach (Import.File file in Import.Files)
             {
                 Import.fullSize += file.Size;
-                FileChecker.backgroundWorker.ReportProgress(0, (object) Path.GetFileName(file.Name));
+                backgroundWorker.ReportProgress(0, Path.GetFileName(file.Name));
                 
-                if (!System.IO.File.Exists(file.Name) || string.Compare(Common.GetHash(file.Name), file.Hash) != 0)
+                if (!File.Exists(file.Name) || string.Compare(Common.GetHash(file.Name), file.Hash) != 0)
                 {
                     Import.OldFiles.Add(file.Name);
                 }
                 else
                 {
                     Import.completeSize += file.Size;
-                    FileChecker.backgroundWorker.ReportProgress(1);
+                    backgroundWorker.ReportProgress(1);
                 }
             }
         }
 
-        private static void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private static void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (e.ProgressPercentage == 0)
             {
@@ -59,7 +61,7 @@ namespace LauncherWebzenV2.Source
             }
         }
 
-        private static void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private static void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             FileDownloader.DownloadFile();
         }
