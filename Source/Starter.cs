@@ -14,7 +14,7 @@ namespace LauncherWebzenV2.Source
         {
             if (!System.IO.File.Exists(Import.ExecutableName))
             {
-                int num = (int) MessageBox.Show(Texts.GetText("MISSINGBINARY", (object) Import.ExecutableName));
+                _ = (int)MessageBox.Show(Texts.GetText("MISSINGBINARY", Import.ExecutableName));
                 Common.EnableStart();
             }
             else
@@ -22,17 +22,20 @@ namespace LauncherWebzenV2.Source
                 try
                 {
                     if (Import.MutexName != "")
+                    {
                         Import.Mutex = new Mutex(false, Import.MutexName);
+                    }
+
                     Process process = new Process();
                     process.StartInfo.FileName = Import.ExecutableName;
                     process.StartInfo.UseShellExecute = true;
-                    process.Start();
-                    process.WaitForExit(2000);
+                    _ = process.Start();
+                    _ = process.WaitForExit(2000);
                     Application.Exit();
                 }
                 catch (Exception ex)
                 {
-                    int num = (int) MessageBox.Show(Texts.GetText("UNKNOWNERROR", (object) ex.Message));
+                    _ = (int)MessageBox.Show(Texts.GetText("UNKNOWNERROR", ex.Message));
                     Application.Exit();
                 }
             }
