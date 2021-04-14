@@ -14,7 +14,7 @@ namespace LauncherWebzenV2.Source
         private static int curFile;
         private static long lastBytes;
         private static long currentBytes;
-        private static Stopwatch stopWatch = new Stopwatch();
+        private static readonly Stopwatch stopWatch = new Stopwatch();
 
         public static void DownloadFile()
         {
@@ -25,7 +25,7 @@ namespace LauncherWebzenV2.Source
                 Common.UpdateCompleteProgress(100L);
                 Starter.Start();
             }
-            else if (FileDownloader.curFile >= Import.OldFiles.Count)
+            else if (curFile >= Import.OldFiles.Count)
             {
                 Common.ChangeStatus("DOWNLOADCOMPLETE");
                 Common.UpdateCurrentProgress(100L, 0.0);
@@ -34,32 +34,34 @@ namespace LauncherWebzenV2.Source
             }
             else
             {
-                if (Import.OldFiles[FileDownloader.curFile].Contains("/"))
-                    Directory.CreateDirectory(Path.GetDirectoryName(Import.OldFiles[FileDownloader.curFile]));
-                
+                if (Import.OldFiles[curFile].Contains("/"))
+                {
+                    _ = Directory.CreateDirectory(Path.GetDirectoryName(Import.OldFiles[curFile]));
+                }
+
                 WebClient webClient = new WebClient();
-                webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(FileDownloader.webClient_DownloadProgressChanged);
-                webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(FileDownloader.webClient_DownloadFileCompleted);
-                FileDownloader.stopWatch.Start();
-                Common.ChangeStatus("DOWNLOADFILE", Import.OldFiles[FileDownloader.curFile]);
-                webClient.DownloadFileAsync(new Uri(Import.ServerURL + Import.OldFiles[FileDownloader.curFile]), Import.OldFiles[FileDownloader.curFile]);
+                webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(WebClient_DownloadProgressChanged);
+                webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(WebClient_DownloadFileCompleted);
+                stopWatch.Start();
+                Common.ChangeStatus("DOWNLOADFILE", Import.OldFiles[curFile]);
+                webClient.DownloadFileAsync(new Uri(Import.ServerURL + Import.OldFiles[curFile]), Import.OldFiles[curFile]);
             }
         }
 
-        private static void webClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        private static void WebClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            FileDownloader.currentBytes = FileDownloader.lastBytes + e.BytesReceived;
-            Common.UpdateCompleteProgress(Computer.Compute(Import.completeSize + FileDownloader.currentBytes));
-            Common.UpdateCurrentProgress((long) e.ProgressPercentage, Computer.ComputeDownloadSpeed((double) e.BytesReceived, FileDownloader.stopWatch));
+            currentBytes = lastBytes + e.BytesReceived;
+            Common.UpdateCompleteProgress(Computer.Compute(Import.completeSize + currentBytes));
+            Common.UpdateCurrentProgress(e.ProgressPercentage, Computer.ComputeDownloadSpeed(e.BytesReceived, stopWatch));
         }
 
-        private static void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private static void WebClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            FileDownloader.lastBytes = FileDownloader.currentBytes;
+            lastBytes = currentBytes;
             Common.UpdateCurrentProgress(100L, 0.0);
-            ++FileDownloader.curFile;
-            FileDownloader.stopWatch.Reset();
-            FileDownloader.DownloadFile();
+            ++curFile;
+            stopWatch.Reset();
+            DownloadFile();
         }
     }
 }
