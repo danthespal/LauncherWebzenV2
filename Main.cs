@@ -15,7 +15,7 @@ namespace LauncherWebzenV2
 {
     public class Main : Form
     {
-        private IContainer components;
+        private readonly IContainer components;
         public Label Status;
         public Button Btn_Run;
         public Button Btn_Quit;
@@ -30,9 +30,9 @@ namespace LauncherWebzenV2
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
-        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -41,15 +41,15 @@ namespace LauncherWebzenV2
 
         public Main()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             Import.gMain = this;
             Protect.ReadInfo();
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
-            this.Text = Import.windowName;
-            this.WindowName_txt.Text = Import.windowName;
+            Text = Import.windowName;
+            WindowName_txt.Text = Import.windowName;
             RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("Software\\Webzen\\Mu\\Config");
             
             if (registryKey != null)
@@ -63,293 +63,335 @@ namespace LauncherWebzenV2
             }
             if (Import.webPanelURL != "")
             {
-                this.webPanel.Visible = true;
-                this.webPanel.Navigate(Import.webPanelURL);
+                webPanel.Visible = true;
+                webPanel.Navigate(Import.webPanelURL);
             }
-            this.Status.Text = Texts.ReloadString();
+            Status.Text = Texts.ReloadString();
         }
 
-        private void Btn_Quit_Click(object sender, EventArgs e) => this.Dispose();
+        private void Btn_Quit_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
 
-        private void Btn_Quit_MouseHover(object sender, EventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_h;
+        private void Btn_Quit_MouseHover(object sender, EventArgs e)
+        {
+            Btn_Quit.BackgroundImage = Resources.Cerrar_h;
+        }
 
-        private void Btn_Quit_MouseLeave(object sender, EventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_n;
+        private void Btn_Quit_MouseLeave(object sender, EventArgs e)
+        {
+            Btn_Quit.BackgroundImage = Resources.Cerrar_n;
+        }
 
-        private void Btn_Quit_MouseDown(object sender, MouseEventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_c;
+        private void Btn_Quit_MouseDown(object sender, MouseEventArgs e)
+        {
+            Btn_Quit.BackgroundImage = Resources.Cerrar_c;
+        }
 
-        private void Btn_Quit_MouseUp(object sender, MouseEventArgs e) => this.Btn_Quit.BackgroundImage = (Image)Resources.Cerrar_h;
+        private void Btn_Quit_MouseUp(object sender, MouseEventArgs e)
+        {
+            Btn_Quit.BackgroundImage = Resources.Cerrar_h;
+        }
 
         private void Btn_Options_Click(object sender, EventArgs e)
         {
-            this.Opacity = 0.5;
+            Opacity = 0.5;
             Options options = new Options();
-            int num = (int) options.ShowDialog();
+            _ = (int)options.ShowDialog();
             options.Dispose();
-            this.Opacity = 1.0;
+            Opacity = 1.0;
         }
 
-        private void Btn_Options_MouseHover(object sender, EventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_h;
+        private void Btn_Options_MouseHover(object sender, EventArgs e)
+        {
+            Btn_Options.BackgroundImage = Resources.Config_h;
+        }
 
-        private void Btn_Options_MouseLeave(object sender, EventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_n;
+        private void Btn_Options_MouseLeave(object sender, EventArgs e)
+        {
+            Btn_Options.BackgroundImage = Resources.Config_n;
+        }
 
-        private void Btn_Options_MouseDown(object sender, MouseEventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_c;
+        private void Btn_Options_MouseDown(object sender, MouseEventArgs e)
+        {
+            Btn_Options.BackgroundImage = Resources.Config_c;
+        }
 
-        private void Btn_Options_MouseUp(object sender, MouseEventArgs e) => this.Btn_Options.BackgroundImage = (Image)Resources.Config_h;
+        private void Btn_Options_MouseUp(object sender, MouseEventArgs e)
+        {
+            Btn_Options.BackgroundImage = Resources.Config_h;
+        }
+
+        private void Btn_Run_Click(object sender, EventArgs e)
+        {
+            if (!Btn_Run.Enabled)
+                return;
+            ListDownloader.DownloadList();
+        }
 
         /*
         private void Btn_Run_Click(object sender, EventArgs e)
         {
-            if (!this.Btn_Run.Enabled)
-                return;
-            ListDownloader.DownloadList();
+            Starter.Start();
         }
         */
 
-        private void Btn_Run_Click(object sender, EventArgs e)
-        {
-            Starter.Start();
-        }
-
         private void Btn_Run_MouseHover(object sender, EventArgs e)
         {
-            if (!this.Btn_Run.Enabled)
+            if (!Btn_Run.Enabled)
+            {
                 return;
-            this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_h;
+            }
+
+            Btn_Run.BackgroundImage = Resources.Jugar_h;
         }
 
         private void Btn_Run_MouseLeave(object sender, EventArgs e)
         {
-            if (!this.Btn_Run.Enabled)
+            if (!Btn_Run.Enabled)
+            {
                 return;
-            this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_n;
+            }
+
+            Btn_Run.BackgroundImage = Resources.Jugar_n;
         }
 
         private void Btn_Run_MouseDown(object sender, MouseEventArgs e)
         {
-            if (!this.Btn_Run.Enabled)
+            if (!Btn_Run.Enabled)
+            {
                 return;
-            this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_c;
+            }
+
+            Btn_Run.BackgroundImage = Resources.Jugar_c;
         }
 
         private void Btn_Run_MouseUp(object sender, MouseEventArgs e)
         {
-            if (!this.Btn_Run.Enabled)
+            if (!Btn_Run.Enabled)
+            {
                 return;
-            this.Btn_Run.BackgroundImage = (Image)Resources.Jugar_h;
+            }
+
+            Btn_Run.BackgroundImage = Resources.Jugar_h;
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && this.components != null)
-                this.components.Dispose();
+            if (disposing && components != null)
+            {
+                components.Dispose();
+            }
+
             base.Dispose(disposing);
         }
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.Status = new System.Windows.Forms.Label();
-            this.Btn_Run = new System.Windows.Forms.Button();
-            this.Btn_Quit = new System.Windows.Forms.Button();
-            this.Btn_Options = new System.Windows.Forms.Button();
-            this.completeProgressText = new System.Windows.Forms.Label();
-            this.currentProgressText = new System.Windows.Forms.Label();
-            this.completeBar = new System.Windows.Forms.PictureBox();
-            this.currentBar = new System.Windows.Forms.PictureBox();
-            this.UpdatePanel = new System.Windows.Forms.Panel();
-            this.WindowName_txt = new System.Windows.Forms.Label();
-            this.webPanel = new System.Windows.Forms.WebBrowser();
-            ((System.ComponentModel.ISupportInitialize)(this.completeBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currentBar)).BeginInit();
-            this.UpdatePanel.SuspendLayout();
-            this.SuspendLayout();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(Main));
+            Status = new Label();
+            Btn_Run = new Button();
+            Btn_Quit = new Button();
+            Btn_Options = new Button();
+            completeProgressText = new Label();
+            currentProgressText = new Label();
+            completeBar = new PictureBox();
+            currentBar = new PictureBox();
+            UpdatePanel = new Panel();
+            WindowName_txt = new Label();
+            webPanel = new WebBrowser();
+            ((ISupportInitialize)completeBar).BeginInit();
+            ((ISupportInitialize)currentBar).BeginInit();
+            UpdatePanel.SuspendLayout();
+            SuspendLayout();
             // 
             // Status
             // 
-            this.Status.AutoSize = true;
-            this.Status.BackColor = System.Drawing.Color.Transparent;
-            this.Status.Font = new System.Drawing.Font("Tahoma", 8.75F);
-            this.Status.ForeColor = System.Drawing.Color.White;
-            this.Status.Location = new System.Drawing.Point(9, 3);
-            this.Status.Margin = new System.Windows.Forms.Padding(0);
-            this.Status.Name = "Status";
-            this.Status.Size = new System.Drawing.Size(42, 14);
-            this.Status.TabIndex = 3;
-            this.Status.Text = "Status";
+            Status.AutoSize = true;
+            Status.BackColor = Color.Transparent;
+            Status.Font = new Font("Tahoma", 8.75F);
+            Status.ForeColor = Color.White;
+            Status.Location = new Point(9, 3);
+            Status.Margin = new Padding(0);
+            Status.Name = "Status";
+            Status.Size = new Size(42, 14);
+            Status.TabIndex = 3;
+            Status.Text = "Status";
             // 
             // Btn_Run
             // 
-            this.Btn_Run.BackgroundImage = global::LauncherWebzenV2.Properties.Resources.Jugar_n;
-            this.Btn_Run.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Btn_Run.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Btn_Run.FlatAppearance.BorderSize = 0;
-            this.Btn_Run.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Run.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.Btn_Run.Location = new System.Drawing.Point(840, 503);
-            this.Btn_Run.Name = "Btn_Run";
-            this.Btn_Run.Size = new System.Drawing.Size(146, 53);
-            this.Btn_Run.TabIndex = 28;
-            this.Btn_Run.UseVisualStyleBackColor = true;
-            this.Btn_Run.Click += new System.EventHandler(this.Btn_Run_Click);
-            this.Btn_Run.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Run_MouseDown);
-            this.Btn_Run.MouseEnter += new System.EventHandler(this.Btn_Run_MouseHover);
-            this.Btn_Run.MouseLeave += new System.EventHandler(this.Btn_Run_MouseLeave);
-            this.Btn_Run.MouseHover += new System.EventHandler(this.Btn_Run_MouseHover);
-            this.Btn_Run.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Run_MouseUp);
+            Btn_Run.BackgroundImage = Resources.Jugar_n;
+            Btn_Run.BackgroundImageLayout = ImageLayout.Stretch;
+            Btn_Run.Cursor = Cursors.Hand;
+            Btn_Run.FlatAppearance.BorderSize = 0;
+            Btn_Run.FlatStyle = FlatStyle.Flat;
+            Btn_Run.Font = new Font("Arial", 12F, FontStyle.Bold);
+            Btn_Run.Location = new Point(840, 503);
+            Btn_Run.Name = "Btn_Run";
+            Btn_Run.Size = new Size(146, 53);
+            Btn_Run.TabIndex = 28;
+            Btn_Run.UseVisualStyleBackColor = true;
+            Btn_Run.Click += new EventHandler(Btn_Run_Click);
+            Btn_Run.MouseDown += new MouseEventHandler(Btn_Run_MouseDown);
+            Btn_Run.MouseEnter += new EventHandler(Btn_Run_MouseHover);
+            Btn_Run.MouseLeave += new EventHandler(Btn_Run_MouseLeave);
+            Btn_Run.MouseHover += new EventHandler(Btn_Run_MouseHover);
+            Btn_Run.MouseUp += new MouseEventHandler(Btn_Run_MouseUp);
             // 
             // Btn_Quit
             // 
-            this.Btn_Quit.BackgroundImage = global::LauncherWebzenV2.Properties.Resources.Cerrar_n;
-            this.Btn_Quit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Btn_Quit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Btn_Quit.FlatAppearance.BorderSize = 0;
-            this.Btn_Quit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Quit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.Btn_Quit.Location = new System.Drawing.Point(968, 3);
-            this.Btn_Quit.Name = "Btn_Quit";
-            this.Btn_Quit.Size = new System.Drawing.Size(18, 18);
-            this.Btn_Quit.TabIndex = 29;
-            this.Btn_Quit.UseVisualStyleBackColor = true;
-            this.Btn_Quit.Click += new System.EventHandler(this.Btn_Quit_Click);
-            this.Btn_Quit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Quit_MouseDown);
-            this.Btn_Quit.MouseEnter += new System.EventHandler(this.Btn_Quit_MouseHover);
-            this.Btn_Quit.MouseLeave += new System.EventHandler(this.Btn_Quit_MouseLeave);
-            this.Btn_Quit.MouseHover += new System.EventHandler(this.Btn_Quit_MouseHover);
-            this.Btn_Quit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Quit_MouseUp);
+            Btn_Quit.BackgroundImage = Resources.Cerrar_n;
+            Btn_Quit.BackgroundImageLayout = ImageLayout.Stretch;
+            Btn_Quit.Cursor = Cursors.Hand;
+            Btn_Quit.FlatAppearance.BorderSize = 0;
+            Btn_Quit.FlatStyle = FlatStyle.Flat;
+            Btn_Quit.Font = new Font("Arial", 12F, FontStyle.Bold);
+            Btn_Quit.Location = new Point(968, 3);
+            Btn_Quit.Name = "Btn_Quit";
+            Btn_Quit.Size = new Size(18, 18);
+            Btn_Quit.TabIndex = 29;
+            Btn_Quit.UseVisualStyleBackColor = true;
+            Btn_Quit.Click += new EventHandler(Btn_Quit_Click);
+            Btn_Quit.MouseDown += new MouseEventHandler(Btn_Quit_MouseDown);
+            Btn_Quit.MouseEnter += new EventHandler(Btn_Quit_MouseHover);
+            Btn_Quit.MouseLeave += new EventHandler(Btn_Quit_MouseLeave);
+            Btn_Quit.MouseHover += new EventHandler(Btn_Quit_MouseHover);
+            Btn_Quit.MouseUp += new MouseEventHandler(Btn_Quit_MouseUp);
             // 
             // Btn_Options
             // 
-            this.Btn_Options.BackgroundImage = global::LauncherWebzenV2.Properties.Resources.Config_n;
-            this.Btn_Options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Btn_Options.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Btn_Options.FlatAppearance.BorderSize = 0;
-            this.Btn_Options.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Options.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.Btn_Options.Location = new System.Drawing.Point(947, 3);
-            this.Btn_Options.Name = "Btn_Options";
-            this.Btn_Options.Size = new System.Drawing.Size(18, 18);
-            this.Btn_Options.TabIndex = 30;
-            this.Btn_Options.UseVisualStyleBackColor = true;
-            this.Btn_Options.Click += new System.EventHandler(this.Btn_Options_Click);
-            this.Btn_Options.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Btn_Options_MouseDown);
-            this.Btn_Options.MouseEnter += new System.EventHandler(this.Btn_Options_MouseHover);
-            this.Btn_Options.MouseLeave += new System.EventHandler(this.Btn_Options_MouseLeave);
-            this.Btn_Options.MouseHover += new System.EventHandler(this.Btn_Options_MouseHover);
-            this.Btn_Options.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Btn_Options_MouseUp);
+            Btn_Options.BackgroundImage = Resources.Config_n;
+            Btn_Options.BackgroundImageLayout = ImageLayout.Stretch;
+            Btn_Options.Cursor = Cursors.Hand;
+            Btn_Options.FlatAppearance.BorderSize = 0;
+            Btn_Options.FlatStyle = FlatStyle.Flat;
+            Btn_Options.Font = new Font("Arial", 12F, FontStyle.Bold);
+            Btn_Options.Location = new Point(947, 3);
+            Btn_Options.Name = "Btn_Options";
+            Btn_Options.Size = new Size(18, 18);
+            Btn_Options.TabIndex = 30;
+            Btn_Options.UseVisualStyleBackColor = true;
+            Btn_Options.Click += new EventHandler(Btn_Options_Click);
+            Btn_Options.MouseDown += new MouseEventHandler(Btn_Options_MouseDown);
+            Btn_Options.MouseEnter += new EventHandler(Btn_Options_MouseHover);
+            Btn_Options.MouseLeave += new EventHandler(Btn_Options_MouseLeave);
+            Btn_Options.MouseHover += new EventHandler(Btn_Options_MouseHover);
+            Btn_Options.MouseUp += new MouseEventHandler(Btn_Options_MouseUp);
             // 
             // completeProgressText
             // 
-            this.completeProgressText.AutoSize = true;
-            this.completeProgressText.BackColor = System.Drawing.Color.Transparent;
-            this.completeProgressText.Font = new System.Drawing.Font("Tahoma", 8.75F);
-            this.completeProgressText.ForeColor = System.Drawing.Color.White;
-            this.completeProgressText.Location = new System.Drawing.Point(667, 18);
-            this.completeProgressText.Margin = new System.Windows.Forms.Padding(0);
-            this.completeProgressText.Name = "completeProgressText";
-            this.completeProgressText.Size = new System.Drawing.Size(26, 14);
-            this.completeProgressText.TabIndex = 31;
-            this.completeProgressText.Text = "0%";
+            completeProgressText.AutoSize = true;
+            completeProgressText.BackColor = Color.Transparent;
+            completeProgressText.Font = new Font("Tahoma", 8.75F);
+            completeProgressText.ForeColor = Color.White;
+            completeProgressText.Location = new Point(667, 18);
+            completeProgressText.Margin = new Padding(0);
+            completeProgressText.Name = "completeProgressText";
+            completeProgressText.Size = new Size(26, 14);
+            completeProgressText.TabIndex = 31;
+            completeProgressText.Text = "0%";
             // 
             // currentProgressText
             // 
-            this.currentProgressText.AutoSize = true;
-            this.currentProgressText.BackColor = System.Drawing.Color.Transparent;
-            this.currentProgressText.Font = new System.Drawing.Font("Tahoma", 8.75F);
-            this.currentProgressText.ForeColor = System.Drawing.Color.White;
-            this.currentProgressText.Location = new System.Drawing.Point(667, 32);
-            this.currentProgressText.Margin = new System.Windows.Forms.Padding(0);
-            this.currentProgressText.Name = "currentProgressText";
-            this.currentProgressText.Size = new System.Drawing.Size(26, 14);
-            this.currentProgressText.TabIndex = 32;
-            this.currentProgressText.Text = "0%";
+            currentProgressText.AutoSize = true;
+            currentProgressText.BackColor = Color.Transparent;
+            currentProgressText.Font = new Font("Tahoma", 8.75F);
+            currentProgressText.ForeColor = Color.White;
+            currentProgressText.Location = new Point(667, 32);
+            currentProgressText.Margin = new Padding(0);
+            currentProgressText.Name = "currentProgressText";
+            currentProgressText.Size = new Size(26, 14);
+            currentProgressText.TabIndex = 32;
+            currentProgressText.Text = "0%";
             // 
             // completeBar
             // 
-            this.completeBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(15)))), ((int)(((byte)(12)))));
-            this.completeBar.BackgroundImage = global::LauncherWebzenV2.Properties.Resources.CompleteProgress;
-            this.completeBar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.completeBar.Location = new System.Drawing.Point(12, 21);
-            this.completeBar.Name = "completeBar";
-            this.completeBar.Size = new System.Drawing.Size(650, 11);
-            this.completeBar.TabIndex = 35;
-            this.completeBar.TabStop = false;
+            completeBar.BackColor = Color.FromArgb(12, 15, 12);
+            completeBar.BackgroundImage = Resources.CompleteProgress;
+            completeBar.BackgroundImageLayout = ImageLayout.Stretch;
+            completeBar.Location = new Point(12, 21);
+            completeBar.Name = "completeBar";
+            completeBar.Size = new Size(650, 11);
+            completeBar.TabIndex = 35;
+            completeBar.TabStop = false;
             // 
             // currentBar
             // 
-            this.currentBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(15)))), ((int)(((byte)(12)))));
-            this.currentBar.BackgroundImage = global::LauncherWebzenV2.Properties.Resources.CurrentProgress;
-            this.currentBar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.currentBar.Location = new System.Drawing.Point(12, 35);
-            this.currentBar.Name = "currentBar";
-            this.currentBar.Size = new System.Drawing.Size(650, 8);
-            this.currentBar.TabIndex = 36;
-            this.currentBar.TabStop = false;
+            currentBar.BackColor = Color.FromArgb(12, 15, 12);
+            currentBar.BackgroundImage = Resources.CurrentProgress;
+            currentBar.BackgroundImageLayout = ImageLayout.Stretch;
+            currentBar.Location = new Point(12, 35);
+            currentBar.Name = "currentBar";
+            currentBar.Size = new Size(650, 8);
+            currentBar.TabIndex = 36;
+            currentBar.TabStop = false;
             // 
             // UpdatePanel
             // 
-            this.UpdatePanel.BackColor = System.Drawing.Color.Transparent;
-            this.UpdatePanel.Controls.Add(this.completeBar);
-            this.UpdatePanel.Controls.Add(this.currentBar);
-            this.UpdatePanel.Controls.Add(this.Status);
-            this.UpdatePanel.Controls.Add(this.completeProgressText);
-            this.UpdatePanel.Controls.Add(this.currentProgressText);
-            this.UpdatePanel.Location = new System.Drawing.Point(119, 503);
-            this.UpdatePanel.Name = "UpdatePanel";
-            this.UpdatePanel.Size = new System.Drawing.Size(715, 53);
-            this.UpdatePanel.TabIndex = 37;
+            UpdatePanel.BackColor = Color.Transparent;
+            UpdatePanel.Controls.Add(completeBar);
+            UpdatePanel.Controls.Add(currentBar);
+            UpdatePanel.Controls.Add(Status);
+            UpdatePanel.Controls.Add(completeProgressText);
+            UpdatePanel.Controls.Add(currentProgressText);
+            UpdatePanel.Location = new Point(119, 503);
+            UpdatePanel.Name = "UpdatePanel";
+            UpdatePanel.Size = new Size(715, 53);
+            UpdatePanel.TabIndex = 37;
             // 
             // WindowName_txt
             // 
-            this.WindowName_txt.AutoSize = true;
-            this.WindowName_txt.BackColor = System.Drawing.Color.Transparent;
-            this.WindowName_txt.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowName_txt.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.WindowName_txt.Location = new System.Drawing.Point(30, 3);
-            this.WindowName_txt.Name = "WindowName_txt";
-            this.WindowName_txt.Size = new System.Drawing.Size(86, 14);
-            this.WindowName_txt.TabIndex = 38;
-            this.WindowName_txt.Text = "MU Launcher";
+            WindowName_txt.AutoSize = true;
+            WindowName_txt.BackColor = Color.Transparent;
+            WindowName_txt.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            WindowName_txt.ForeColor = Color.LightSteelBlue;
+            WindowName_txt.Location = new Point(30, 3);
+            WindowName_txt.Name = "WindowName_txt";
+            WindowName_txt.Size = new Size(86, 14);
+            WindowName_txt.TabIndex = 38;
+            WindowName_txt.Text = "MU Launcher";
             // 
             // webPanel
             // 
-            this.webPanel.Location = new System.Drawing.Point(5, 23);
-            this.webPanel.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webPanel.Name = "webPanel";
-            this.webPanel.Size = new System.Drawing.Size(980, 475);
-            this.webPanel.TabIndex = 33;
-            this.webPanel.Url = new System.Uri("", System.UriKind.Relative);
-            this.webPanel.Visible = false;
+            webPanel.Location = new Point(5, 23);
+            webPanel.MinimumSize = new Size(20, 20);
+            webPanel.Name = "webPanel";
+            webPanel.Size = new Size(980, 475);
+            webPanel.TabIndex = 33;
+            webPanel.Url = new Uri("", UriKind.Relative);
+            webPanel.Visible = false;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(15)))), ((int)(((byte)(12)))));
-            this.BackgroundImage = global::LauncherWebzenV2.Properties.Resources.Background;
-            this.ClientSize = new System.Drawing.Size(990, 560);
-            this.Controls.Add(this.WindowName_txt);
-            this.Controls.Add(this.UpdatePanel);
-            this.Controls.Add(this.webPanel);
-            this.Controls.Add(this.Btn_Options);
-            this.Controls.Add(this.Btn_Quit);
-            this.Controls.Add(this.Btn_Run);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(990, 560);
-            this.MinimumSize = new System.Drawing.Size(990, 560);
-            this.Name = "Main";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Launcher";
-            this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(15)))), ((int)(((byte)(12)))));
-            this.Load += new System.EventHandler(this.Main_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_MouseDown);
-            ((System.ComponentModel.ISupportInitialize)(this.completeBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currentBar)).EndInit();
-            this.UpdatePanel.ResumeLayout(false);
-            this.UpdatePanel.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(6F, 13F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(12, 15, 12);
+            BackgroundImage = Resources.Background;
+            ClientSize = new Size(990, 560);
+            Controls.Add(WindowName_txt);
+            Controls.Add(UpdatePanel);
+            Controls.Add(webPanel);
+            Controls.Add(Btn_Options);
+            Controls.Add(Btn_Quit);
+            Controls.Add(Btn_Run);
+            FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$Icon");
+            MaximizeBox = false;
+            MaximumSize = new Size(990, 560);
+            MinimumSize = new Size(990, 560);
+            Name = "Main";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Launcher";
+            TransparencyKey = Color.FromArgb(12, 15, 12);
+            Load += new EventHandler(Main_Load);
+            MouseDown += new MouseEventHandler(Main_MouseDown);
+            ((ISupportInitialize)completeBar).EndInit();
+            ((ISupportInitialize)currentBar).EndInit();
+            UpdatePanel.ResumeLayout(false);
+            UpdatePanel.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -357,8 +399,8 @@ namespace LauncherWebzenV2
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                _ = ReleaseCapture();
+                _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
     }
