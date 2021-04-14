@@ -22,51 +22,74 @@ namespace Cyclic.Redundancy.Check
 
         public CRC(uint polynomial, uint seed)
         {
-            this.table = CRC.InitializeTable(polynomial);
-            this.seed = this.hash = seed;
+            table = InitializeTable(polynomial);
+            seed = hash = seed;
         }
 
-        public override void Initialize() => this.hash = this.seed;
+        public override void Initialize()
+        {
+            hash = seed;
+        }
 
-        protected override void HashCore(byte[] buffer, int start, int length) => this.hash = CRC.CalculateHash(this.table, this.hash, (IList<byte>) buffer, start, length);
+        protected override void HashCore(byte[] buffer, int start, int length)
+        {
+            hash = CalculateHash(table, hash, buffer, start, length);
+        }
 
         protected override byte[] HashFinal()
         {
-            byte[] bigEndianBytes = CRC.UInt32ToBigEndianBytes(~this.hash);
-            this.HashValue = bigEndianBytes;
+            byte[] bigEndianBytes = UInt32ToBigEndianBytes(~hash);
+            HashValue = bigEndianBytes;
             return bigEndianBytes;
         }
 
         public override int HashSize => 32;
 
-        public static uint Compute(byte[] buffer) => CRC.Compute(uint.MaxValue, buffer);
+        public static uint Compute(byte[] buffer)
+        {
+            return Compute(uint.MaxValue, buffer);
+        }
 
-        public static uint Compute(uint seed, byte[] buffer) => CRC.Compute(79764919U, seed, buffer);
+        public static uint Compute(uint seed, byte[] buffer)
+        {
+            return Compute(79764919U, seed, buffer);
+        }
 
-        public static uint Compute(uint polynomial, uint seed, byte[] buffer) => ~CRC.CalculateHash(CRC.InitializeTable(polynomial), seed, (IList<byte>) buffer, 0, buffer.Length);
+        public static uint Compute(uint polynomial, uint seed, byte[] buffer)
+        {
+            return ~CalculateHash(InitializeTable(polynomial), seed, buffer, 0, buffer.Length);
+        }
 
         private static uint[] InitializeTable(uint polynomial)
         {
-            if (polynomial == 79764919U && CRC.defaultTable != null)
-                return CRC.defaultTable;
+            if (polynomial == 79764919U && defaultTable != null)
+            {
+                return defaultTable;
+            }
 
             uint[] numArray = new uint[256];
 
             for (int index1 = 0; index1 < 256; ++index1)
             {
-                uint num = (uint) index1;
+                uint num = (uint)index1;
                 for (int index2 = 0; index2 < 8; ++index2)
                 {
-                    if (((int) num & 1) == 1)
-                        num = num >> 1 ^ polynomial;
+                    if (((int)num & 1) == 1)
+                    {
+                        num = (num >> 1) ^ polynomial;
+                    }
                     else
+                    {
                         num >>= 1;
+                    }
                 }
-            numArray[index1] = num;
+                numArray[index1] = num;
             }
       
             if (polynomial == 79764919U)
-                CRC.defaultTable = numArray;
+            {
+                defaultTable = numArray;
+            }
             return numArray;
         }
 
@@ -75,7 +98,10 @@ namespace Cyclic.Redundancy.Check
             uint num = seed;
 
             for (int index = start; index < size - start; ++index)
-                num = num >> 8 ^ table[(int) buffer[index] ^ (int) num & (int) byte.MaxValue];
+            {
+                num = (num >> 8) ^ table[buffer[index] ^ ((int)num & byte.MaxValue)];
+            }
+
             return num;
         }
 
@@ -84,7 +110,9 @@ namespace Cyclic.Redundancy.Check
             byte[] bytes = BitConverter.GetBytes(uint32);
 
             if (BitConverter.IsLittleEndian)
-                Array.Reverse((Array) bytes);
+            {
+                Array.Reverse(bytes);
+            }
             return bytes;
         }
     }
