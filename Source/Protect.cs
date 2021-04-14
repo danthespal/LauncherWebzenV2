@@ -15,19 +15,21 @@ namespace LauncherWebzenV2.Source
             Common.ChangeStatus("READINGINFO");
             Common.DisableStart();
             BackgroundWorker backgroundWorker = new BackgroundWorker();
-            backgroundWorker.DoWork += new DoWorkEventHandler(Protect.backgroundWorker_DoWork);
-            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Protect.backgroundWorker_RunWorkerCompleted);
+            backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
+            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker_RunWorkerCompleted);
             
             if (backgroundWorker.IsBusy)
             {
-                int num = (int) MessageBox.Show(Texts.GetText("READINFOERROR"));
+                _ = (int)MessageBox.Show(Texts.GetText("READINFOERROR"));
                 Application.Exit();
             }
             else
+            {
                 backgroundWorker.RunWorkerAsync();
+            }
         }
 
-        private static void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        private static void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
@@ -41,15 +43,15 @@ namespace LauncherWebzenV2.Source
             }
             catch (Exception ex)
             {
-                int num = (int) MessageBox.Show(ex.Message);
+                _ = (int)MessageBox.Show(ex.Message);
                 Application.Exit();
             }
         }
 
-        private static void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private static void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-          Common.ChangeStatus("READINFOCOMPLETE");
-          Networking.CheckNetwork();
+            Common.ChangeStatus("READINFOCOMPLETE");
+            Networking.CheckNetwork();
         }
     }
 }
