@@ -14,42 +14,44 @@ namespace LauncherWebzenV2.Source
         {
             Common.ChangeStatus("CONNECTING");
             BackgroundWorker backgroundWorker = new BackgroundWorker();
-            backgroundWorker.DoWork += new DoWorkEventHandler(Networking.backgroundWorker_DoWork);
-            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Networking.backgroundWorker_RunWorkerCompleted);
+            backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
+            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker_RunWorkerCompleted);
             
             if (backgroundWorker.IsBusy)
             {
-                int num = (int) MessageBox.Show(Texts.GetText("UNKNOWNERROR", (object) "CheckNetwork isBusy"));
+                int num = (int)MessageBox.Show(Texts.GetText("UNKNOWNERROR", (object)"CheckNetwork isBusy"));
                 Application.Exit();
             }
             else
+            {
                 backgroundWorker.RunWorkerAsync();
+            }
         }
 
-        private static void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        private static void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
-                new WebClient().OpenRead(Import.ServerURL + Import.PatchlistName);
-                e.Result = (object) true;
+                _ = new WebClient().OpenRead(Import.ServerURL + Import.PatchlistName);
+                e.Result = true;
             }
             catch
             {
-                e.Result = (object) false;
+                e.Result = false;
             }
         }
 
-        private static void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private static void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (!Convert.ToBoolean(e.Result))
             {
-                  int num = (int) MessageBox.Show(Texts.GetText("NONETWORK"));
-                  Application.Exit();
+                _ = (int)MessageBox.Show(Texts.GetText("NONETWORK"));
+                Application.Exit();
             }
             else
             {
-                  Common.ChangeStatus("CONNECTED");
-                  Common.EnableStart();
+                Common.ChangeStatus("CONNECTED");
+                Common.EnableStart();
             }
         }
     }
