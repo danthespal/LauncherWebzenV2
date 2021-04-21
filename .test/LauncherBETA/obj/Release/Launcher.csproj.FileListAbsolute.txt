@@ -1,0 +1,9 @@
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\bin\Release\Launcher.exe
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\bin\Release\Launcher.pdb
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Release\Launcher.csprojAssemblyReference.cache
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Release\LauncherKG.Main.resources
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Release\LauncherKG.Properties.Resources.resources
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Release\Launcher.csproj.GenerateResource.cache
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Release\Launcher.csproj.CoreCompileInputs.cache
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Release\Launcher.exe
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Release\Launcher.pdb

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: D:\Git\MuOnlineLauncher\CPTeamLauncher\Launcher.exe-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A7496DEF-8AD0-4374-8CC0-471282AB6F85}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>Launcher</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.1</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>LauncherKG</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>LauncherKG.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>GameServer.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="N1\T1.cs" />
+    <Compile Include="N1\T2.cs" />
+    <Compile Include="N1\T3.cs" />
+    <Compile Include="N1\N2\T4.cs" />
+    <Compile Include="N1\N2\T5.cs" />
+    <Compile Include="N1\N3\T10.cs" />
+    <Compile Include="N1\N3\T11.cs" />
+    <Compile Include="N1\N3\T6.cs" />
+    <Compile Include="N1\N3\T7.cs" />
+    <Compile Include="N1\N3\T8.cs" />
+    <Compile Include="N1\N3\T9.cs" />
+    <Compile Include="N1\N3\N4\T12.cs" />
+    <Compile Include="N1\N3\N4\T13.cs" />
+    <Compile Include="N1\N3\N5\T14.cs" />
+    <Compile Include="N1\N3\N5\T15.cs" />
+    <Compile Include="N1\N3\N5\T16.cs" />
+    <Compile Include="N1\N6\T17.cs" />
+    <Compile Include="N1\N7\T18.cs" />
+    <Compile Include="Cyclic\Redundancy\Check\CRC.cs" />
+    <Compile Include="OptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Common.cs" />
+    <Compile Include="Source\Computer.cs" />
+    <Compile Include="Source\FileChecker.cs" />
+    <Compile Include="Source\FileDownloader.cs" />
+    <Compile Include="Source\Import.cs" />
+    <Compile Include="Source\ListDownloader.cs" />
+    <Compile Include="Source\ListProcessor.cs" />
+    <Compile Include="Source\Networking.cs" />
+    <Compile Include="Source\Starter.cs" />
+    <Compile Include="Source\Texts.cs" />
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="GameServer.ico" />
+    <None Include="Resources\windowmode_uncheck.bmp" />
+    <None Include="Resources\windowmode.bmp" />
+    <None Include="Resources\start_4.bmp" />
+    <None Include="Resources\start_3.bmp" />
+    <None Include="Resources\start_2.bmp" />
+    <None Include="Resources\start_1.bmp" />
+    <None Include="Resources\setting_back.bmp" />
+    <None Include="Resources\setting_4.png" />
+    <None Include="Resources\setting_3.png" />
+    <None Include="Resources\setting_2.png" />
+    <None Include="Resources\setting_1.png" />
+    <None Include="Resources\progress.png" />
+    <None Include="Resources\minimize_3.bmp" />
+    <None Include="Resources\minimize_2.bmp" />
+    <None Include="Resources\minimize_1.bmp" />
+    <None Include="Resources\home_3.bmp" />
+    <None Include="Resources\home_2.bmp" />
+    <None Include="Resources\home_1.bmp" />
+    <None Include="Resources\exit_4.png" />
+    <None Include="Resources\exit_3.png" />
+    <None Include="Resources\exit_2.png" />
+    <None Include="Resources\exit_1.png" />
+    <None Include="Resources\BITMAP155_1.bmp" />
+    <None Include="Resources\BITMAP154_1.bmp" />
+    <None Include="Resources\BITMAP129_1.bmp" />
+    <None Include="Resources\accept_3.bmp" />
+    <None Include="Resources\accept_2.bmp" />
+    <None Include="Resources\accept_1.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

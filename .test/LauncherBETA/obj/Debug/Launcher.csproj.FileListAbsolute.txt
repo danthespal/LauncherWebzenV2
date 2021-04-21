@@ -1,0 +1,7 @@
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Debug\Launcher.csprojAssemblyReference.cache
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Debug\LauncherKG.Main.resources
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Debug\LauncherKG.Properties.Resources.resources
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Debug\LauncherKG.T19.resources
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Debug\LauncherKG.T20.resources
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Debug\Launcher.csproj.GenerateResource.cache
+C:\Users\dannybest\Desktop\Dissassambled\Test\Launcher\obj\Debug\Launcher.csproj.CoreCompileInputs.cache
